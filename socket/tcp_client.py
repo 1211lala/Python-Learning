@@ -13,25 +13,14 @@
 """
 
 import socket
+from get_ip import get_local_ip
 
-
-def get_local_ip():
-    try:
-        # 获取主机名
-        host_name = socket.gethostname()
-        
-        # 通过主机名获取 IP 地址
-        local_ip = socket.gethostbyname(host_name)
-        
-        return local_ip
-    except Exception as e:
-        print(f"Error: {e}")
-
-
-connect_ip = get_local_ip()
 connect_port = 10003
+connect_ip = get_local_ip()
 
-#创建socket对象 11
+
+
+#创建socket对象 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 #连接远端

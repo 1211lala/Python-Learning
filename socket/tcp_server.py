@@ -4,27 +4,14 @@
 
 
 实验现象
-    使用tcp通信发送一个http请求, 并获得服务器返回数据并打印
-    
-    
-#创建对象 --> 绑定地址 --> 设置监听 --> 等待链接
+    使用Python实现了一个tcp服务端,可以使用tcp客户端访问
 
 
 """
-import socket
 
-#获取主机IP
-def get_local_ip():
-    try:
-        # 获取主机名
-        host_name = socket.gethostname()
-        
-        # 通过主机名获取 IP 地址
-        local_ip = socket.gethostbyname(host_name)
-        
-        return local_ip
-    except Exception as e:
-        print(f"Error: {e}")
+
+import socket
+from get_ip import get_local_ip
 
 #tcp_server端口
 server_port = 10003
@@ -32,7 +19,6 @@ server_port = 10003
 server_ip = get_local_ip()
 
 
-print("服务器ip :%s 端口 %d 已开启服务！" %(server_ip, server_port))
 # 创建 socket 对象
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -41,7 +27,7 @@ server_socket.bind((server_ip, server_port))
 
 # 开始监听，允许最多 5 个连接
 server_socket.listen(5)
-
+print("服务器ip :%s 端口 %d 已开启服务！" %(server_ip, server_port))
 
 while True:
     # 等待客户端连接
@@ -54,6 +40,7 @@ while True:
 
     # 循环接收客户端消息
     while True:
+        # 如果客户端没有数据发送会一直在这里等待
         data = client_socket.recv(1024)
         
         if data == b"":

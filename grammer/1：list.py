@@ -25,6 +25,8 @@ print(list[:])
 print(list[::-1])
 
 
+
+
 #内置排序算法
 list = [6,7,43,78,100,2]
 list.sort()
@@ -57,6 +59,11 @@ for i in matirx:
     for j in range(len(i)):
         print(i[j])
 
+
+
+
+
+
 #列表的浅拷贝 list.copy & 切片  copy.copy() 对于二维数值不能处理，需要深拷贝
 #      深拷贝 copy.deepcopy()
 import copy
@@ -72,6 +79,7 @@ list5 = list4
 # list5 = list4[::]
 list5[1] = 99
 print(list4)
+
 
 
 
