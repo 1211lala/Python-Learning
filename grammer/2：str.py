@@ -15,7 +15,6 @@ str3 = "美人啊，你有大大的眼睛，还有一张嘴！"
 
 print(str1.join([str2, str3]))
 
-
 #格式化字符串
 print("1+2 = {}   2*2 = {} {},".format(1+2, 2*2, "this is format"))
 print("1+2 = {2}   2*2 = {1} {0},".format(1+2, 2*2, "this is format"))
