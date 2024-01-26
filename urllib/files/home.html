@@ -1,0 +1,288 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+    <link rel="shortcut icon" href="img/favicon.svg" />
+    <link rel="stylesheet" type="text/css" href="source/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css" href="source/home.min.css">
+    <script src="source/zepto.js"></script>
+    <script type="text/javascript" src="source/sweetalert2.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <table border="0" align="center" class="main_table" cellspacing="4px">
+            <tr>
+                <td style="background-color: #ffffff5f;" class="table-head-style">安徽科安思腾科技有限公司</td>
+            </tr>
+        </table>
+    </p>
+        <table border="0" align="center" class="main_table" cellspacing="4px">
+            <tr>
+                <td colspan="3">
+                    <table class="max-size" cellspacing="4px">
+                        <tr>
+                            <td class="table-head-style">WIFI设置</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-style">SSID</td>
+                <td class="table-style">
+                    <div class="max-size"><input id="SET_WIFI_CONFIG_SSID" type="text" list="wifi_ssid_list"
+                            class="input-style" onmousedown="value = '';" onchange="wifi_ssid_change()"><datalist
+                            id="wifi_ssid_list"></datalist></div>
+                </td>
+                <td style="background-color: #64b2d66f;" class="mybt-td" align="center"><label><input type="button"
+                            onclick='get_wifi_scan_list()'
+                            style="background: url(img/reflash.svg)no-repeat;background-size: 100% 100%;"
+                            class="mybt-ico" /></label></td>
+            </tr>
+            <tr>
+                <td class="table-style">密码</td>
+                <td class="table-style"><input type="password" id="SET_WIFI_CONFIG_PSWD" value=""
+                        placeholder="请输入 WIFI 密码" class="input-style" /><br></td>
+                <td style="background-color: #64b2d66f;" class="mybt-td" align="center"><label><input type="button"
+                            id="SET_WIFI_CONFIG_PSWD_HIDE" onclick='set_wifi_password_hide()'
+                            style="background: url(img/pswd_0.svg)no-repeat;background-size: 100% 100%;"
+                            class="mybt-ico" /></label></td>
+            </tr>
+            <tr>
+                <td class="table-style">接入方式</td>
+                <td id="SHOW_WIFI_CONFIG_MODE" style="background-color: #8fc9765f;" class="mybt-td" align="center">
+                    DHCP动态获取</td>
+                <td style="background-color: #64b2d66f;" class="mybt-td" align="center"><label><input type="button"
+                            name="delete_all" onclick="set_wifi_connect_mode('toggle')"
+                            style="background: url(img/revise.svg)no-repeat;background-size: 100% 100%;"
+                            class="mybt-ico" /></label></td>
+            </tr>
+            <tr>
+                <td class="table-style">IP地址</td>
+                <td class="table-style" colspan="2"><input type="text" id="SET_WIFI_CONFIG_IP" value=""
+                        placeholder="请输入 IP 地址" class="input-style" /><br></td>
+            </tr>
+            <tr>
+                <td class="table-style">子网掩码</td>
+                <td class="table-style" colspan="2"><input type="text" id="SET_WIFI_CONFIG_SUBNET" value=""
+                        placeholder="请输入 子网掩码" class="input-style" /><br></td>
+            </tr>
+            <tr>
+                <td class="table-style">默认网关</td>
+                <td class="table-style" colspan="2"><input type="text" id="SET_WIFI_CONFIG_GATEWAY" value=""
+                        placeholder="请输入 默认网关" class="input-style" /><br></td>
+            </tr>
+            <tr>
+                <td class="table-style">DNS服务</td>
+                <td class="table-style" colspan="2"><input type="text" id="SET_WIFI_CONFIG_DNS" value=""
+                        placeholder="请输入 DNS服务" class="input-style" /><br></td>
+            </tr>
+            <tr>
+                <td style="background-color: #c97b765f;" class="mybt-td" align="center"><label><input type="button"
+                            onclick="get_wifi_config()" class="mybt-input" /><span class="mybt-span">重置</span></label>
+                </td>
+                <td style="background-color: #64b2d66f;" class="mybt-td" align="center" colspan="2"><label><input
+                            type="button" onclick="set_wifi_config()" class="mybt-input" /><span
+                            class="mybt-span">提交</span></label></td>
+            </tr>
+        </table>
+    </p>
+        <table id="TB_FIREDOOR_CONFIG" border="0" align="center" class="main_table" cellspacing="4px">
+            <tr>
+                <td colspan="3">
+                    <table class="max-size" cellspacing="4px">
+                        <tr>
+                            <td class="table-head-style">防火门配置</td>
+                            <td style="background-color: #dadada6f;width: 120px;font-size: 16;" align="center">
+                                <label><input type="button" onclick="change_board_mode('light')"
+                                        class="mybt-input" /><span class="mybt-span">灯光配置</span>
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-style">ID</td>
+                <td class="table-style" colspan="2"><input type="text" id="FIREDOOR_ID" value="" placeholder="唯一 ID"
+                        class="input-style" /><br></td>
+            </tr>
+            <tr>
+                <td class="table-style">端口号</td>
+                <td class="table-style" colspan="2"><input type="text" id="FIREDOOR_PORT" value=""
+                        placeholder="HTTP 服务端口号 (8080)" class="input-style" /><br></td>
+            </tr>
+            <tr>
+                <td class="table-style">默认状态</td>
+                <td id="DEF_FIREDOOR_STATE_CLOSE" style="background-color: #8fc9765f;" class="mybt-td" align="center">
+                    <label><input type="button" onclick="set_fire_door_def_state('close')" class="mybt-input" /><span
+                            class="mybt-span">常闭</span></label>
+                </td>
+                <td id="DEF_FIREDOOR_STATE_OPEN" style="background-color: #dbdbdb6f;" class="mybt-td" align="center">
+                    <label><input type="button" onclick="set_fire_door_def_state('open')" class="mybt-input" /><span
+                            class="mybt-span">常开</span></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-style">默认角度</td>
+                <td class="table-style" colspan="2"><input type="text" id="FIREDOOR_DEF_ANGLE" value=""
+                        placeholder="默认角度 (0° - 180°)" class="input-style" /><br></td>
+            </tr>
+            <tr>
+                <td style="background-color: #c97b765f;" class="mybt-td" align="center"><label><input type="button"
+                            onclick="firedoor_config('get')" class="mybt-input" /><span
+                            class="mybt-span">重置</span></label></td>
+                <td style="background-color: #64b2d66f;" class="mybt-td" align="center" colspan="2"><label><input
+                            type="button" onclick="firedoor_config('set')" class="mybt-input" /><span
+                            class="mybt-span">提交</span></label></td>
+            </tr>
+        </table>
+    </p>
+        <table id="TB_FIREDOOR_TEST" border="0" align="center" class="main_table" cellspacing="4px">
+            <tr>
+                <td colspan="4">
+                    <table class="max-size" cellspacing="4px">
+                        <tr>
+                            <td class="table-head-style">防火门测试</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-style" style="width: 120px;">状态</td>
+                <td class="table-style" style="width: 60px;" id="FIREDOOR_RAW_STATE">开</td>
+                <td id="SET_FIREDOOR_STATE_CLOSE" style="background-color: #8fc9765f;" class="mybt-td" align="center">
+                    <label><input type="button" onclick="set_fire_door_state('close')" class="mybt-input" /><span
+                            class="mybt-span">关门</span></label>
+                </td>
+                <td id="SET_FIREDOOR_STATE_OPEN" style="background-color: #dbdbdb6f;" class="mybt-td" align="center">
+                    <label><input type="button" onclick="set_fire_door_state('open')" class="mybt-input" /><span
+                            class="mybt-span">开门</span></label>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-style">角度</td>
+                <td class="table-style" id="FIREDOOR_RAW_ANGLE">180°</td>
+                <td class="table-style" colspan="2"><input type="text" id="FIREDOOR_SET_ANGLE"
+                        placeholder="角度 (0° - 180°)" class="input-style" readonly="true" /><br></td>
+            </tr>
+            <tr>
+                <td style="background-color: #c97b765f;" class="mybt-td" align="center"><label><input type="button"
+                            onclick="firedoor_data('get')" class="mybt-input" /><span
+                            class="mybt-span">获取</span></label></td>
+                <td style="background-color: #64b2d66f;" class="mybt-td" align="center" colspan="3"><label><input
+                            type="button" onclick="firedoor_data('set')" class="mybt-input" /><span
+                            class="mybt-span">下发</span></label></td>
+            </tr>
+        </table>
+    </p>
+        <table id="TB_LIGHT_CONFIG" border="0" align="center" class="main_table" cellspacing="4px">
+            <tr>
+                <td colspan="3">
+                    <table class="max-size" cellspacing="4px">
+                        <tr>
+                            <td class="table-head-style">灯光配置</td>
+                            <td style="background-color: #dadada6f;width: 120px;font-size: 16;" align="center">
+                                <label><input type="button" onclick="change_board_mode('firedoor')"
+                                        class="mybt-input" /><span class="mybt-span">防火门配置</span></label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-style">ID</td>
+                <td class="table-style" colspan="2"><input type="text" id="LIGHT_ID" value="" placeholder="唯一 ID"
+                        class="input-style" /><br></td>
+            </tr>
+            <tr>
+                <td class="table-style">IP</td>
+                <td class="table-style" colspan="2"><input type="text" id="LIGHT_IP" value="" placeholder="静态 IP 地址"
+                        class="input-style" /><br></td>
+            </tr>
+            <tr>
+                <td class="table-style">端口号</td>
+                <td class="table-style" colspan="2"><input type="text" id="LIGHT_PORT" value=""
+                        placeholder="HTTP 服务端口号 (8080)" class="input-style" /><br></td>
+            </tr>
+            <tr>
+                <td class="table-style">默认状态</td>
+                <td id="DEF_LIGHT_STATE_CLOSE_TB" style="background-color: #8fc9765f;" class="mybt-td" align="center">
+                    <label><input type="button" onclick="set_light_def_state('close')" class="mybt-input" /><span
+                            class="mybt-span">常闭</span></label>
+                </td>
+                <td id="DEF_LIGHT_STATE_OPEN_TB" style="background-color: #dbdbdb6f;" class="mybt-td" align="center">
+                    <label><input type="button" onclick="set_light_def_state('open')" class="mybt-input" /><span
+                            class="mybt-span">常开</span></label>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: #c97b765f;" class="mybt-td" align="center"><label><input type="button"
+                            onclick="window.location.href='/map'" class="mybt-input" /><span
+                            class="mybt-span">重置</span></label></td>
+                <td style="background-color: #64b2d66f;" class="mybt-td" align="center" colspan="2"><label><input
+                            type="button" onclick="window.location.href='/log'" class="mybt-input" /><span
+                            class="mybt-span">提交</span></label></td>
+            </tr>
+        </table>
+    </p>
+        <table id="TB_LIGHT_TEST" border="0" align="center" class="main_table" cellspacing="4px">
+            <tr>
+                <td colspan="4" class="table-head-style">灯光测试</td>
+            </tr>
+            <tr>
+                <td class="table-style" style="width: 120px;">状态</td>
+                <td class="table-style" style="width: 60px;" id="LIGHT_RAW_STATE">开</td>
+                <td id="SET_LIGHT_STATE_CLOSE_TB" style="background-color: #8fc9765f;" class="mybt-td" align="center">
+                    <label><input type="button" onclick="set_light_state('close')" class="mybt-input" /><span
+                            class="mybt-span">关灯</span></label>
+                </td>
+                <td id="SET_LIGHT_STATE_OPEN_TB" style="background-color: #dbdbdb6f;" class="mybt-td" align="center">
+                    <label><input type="button" onclick="set_light_state('open')" class="mybt-input" /><span
+                            class="mybt-span">开灯</span></label>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: #c97b765f;" class="mybt-td" align="center"><label><input type="button"
+                            onclick="window.location.href='/map'" class="mybt-input" /><span
+                            class="mybt-span">获取</span></label></td>
+                <td style="background-color: #64b2d66f;" class="mybt-td" align="center" colspan="3"><label><input
+                            type="button" onclick="window.location.href='/log'" class="mybt-input" /><span
+                            class="mybt-span">下发</span></label></td>
+            </tr>
+        </table>
+    </p>
+        <table border="0" align="center" class="main_table" cellspacing="4px">
+            <tr>
+                <td colspan="2">
+                    <table class="max-size" cellspacing="4px">
+                        <tr>
+                            <td class="table-head-style">系统管理</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: #64b2d66f;" class="mybt-td" align="center"><label><input type='button'
+                            onclick="window.location.href='update'" class="mybt-input" /><span
+                            class="mybt-span">OTA远程升级</span></label>
+                </td>
+            </tr>
+            <tr>
+                <td style=" background-color:#cb3d3d6f;" class="mybt-td" align="center">
+                    <label>
+                        <input type='button' onclick="set_soft_reboot()" class="mybt-input" /><span
+                            class="mybt-span">重启系统</span>
+                    </label>
+                </td>
+            </tr>
+        </table>
+    </p>
+        <table border=" 0" align="center" class="main_table" cellspacing="4px">
+            <th id="software_version" style="font-size: 12px; text-align:right;">software version</th>
+        </table>
+    </div>
+</body>
+<script src="source/home.min.js"></script>
+
+</html>
