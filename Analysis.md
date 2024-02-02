@@ -1,5 +1,6 @@
 # python中文资料网站
     http://www.pythondoc.com/pythontutorial3/datastructures.html#tut-dictionaries
+    https://www.runoob.com/python3/python3-errors-execptions.html
 
 ## 字节串和字符串
 
