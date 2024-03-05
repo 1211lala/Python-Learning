@@ -18,6 +18,8 @@
 
 """
 list = [1,3,4,"aaaa",14577, 1.04564]
+
+
 print(list[0::1])
 print(list[:3])
 print(list[3:])
